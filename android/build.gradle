@@ -1,0 +1,46 @@
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+
+subprojects {
+    afterEvaluate { project ->
+        if (project.hasProperty('android') && project.android.namespace == null) {
+            def manifest = file("${project.projectDir}/src/main/AndroidManifest.xml")
+            def pkg = manifest.exists() ? new XmlSlurper().parse(manifest).@package.text() : ''
+            project.android.namespace = pkg ?: project.group.toString()
+        }
+        // Align Java target with Kotlin (17) for old plugins like install_plugin
+        if (project.hasProperty('android')) {
+            // Old plugins (e.g. install_plugin) use compileSdk < 30, which can't compile Java 17
+            def sdk = project.android.compileSdkVersion
+            def sdkInt = sdk ? (sdk.toString().replaceAll('[^0-9]', '') ?: '0').toInteger() : 0
+            if (sdkInt < 34) {
+                project.android.compileSdkVersion 36
+            }
+            project.android.compileOptions {
+                sourceCompatibility JavaVersion.VERSION_17
+                targetCompatibility JavaVersion.VERSION_17
+            }
+        }
+        // Some plugins (e.g. flutter_device_id) force Kotlin jvmTarget 1.8
+        project.tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+            compilerOptions.jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+        }
+    }
+}
+
+subprojects {
+    project.evaluationDependsOn(':app')
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
