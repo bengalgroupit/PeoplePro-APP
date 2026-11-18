@@ -9,8 +9,13 @@ import 'package:peoplepro/utils/utils.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/foundation.dart';
 
 Future<void> main() async {
+  if (kDebugMode) {
+    HttpOverrides.global = DevHttpOverrides();
+  }
+
   WidgetsFlutterBinding.ensureInitialized();
 
   Settings.apiUrl = await ApiUrl.getApiUrl();
@@ -61,5 +66,15 @@ class StartupScreen extends StatelessWidget {
                 statusBarColor: UserColors.primaryColor,
                 statusBarBrightness: Brightness.light),
             child: const SplashScreen()));
+  }
+}
+
+class DevHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) =>
+              host == 'localhost' || host == '10.0.2.2';
   }
 }

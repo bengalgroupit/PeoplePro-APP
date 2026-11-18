@@ -66,7 +66,7 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
     ctrlMobile.text = data.mobileNo!;
     ctrlMobileEmergency.text = data.emergencyContact!;
     ctrlEmail.text = data.email!;
-    _isBloodDonor = data.isBloodDonor!;
+    //_isBloodDonor = data.isBloodDonor!;
     setState(() {});
   }
 

@@ -1,12 +1,12 @@
 name: peoplepro
 description: Powered by Group IT.
 publish_to: "none"
-version: 3.3.10+19
+version: 3.3.11+20
 
 developer:
-  name: Md. Jakir Hossain
+  name: Sabet Bin Mukter
   title: Team Lead (Software Development)
-  email: codename.jakir@gmail.com
+  email: it13@bengal.com.bd
 
 environment:
   sdk: ">=3.3.1 <4.0.0"

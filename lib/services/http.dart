@@ -1,7 +1,14 @@
 class Http {
-  static String api_url =
-      "http://hris.bengalgroup.com:8080/inteaccERP/rest/v2/";
+  //static String api_url ="http://hris.bengalgroup.com:8080/inteaccERP/rest/v2/";
 //  static String api_url = "http://43.224.118.54:8080/inteaccERP/rest/v2/";
+  // static String api_url = "http://10.0.2.2:8080/inteaccERP/rest/v2/";
+
+  static String api_url = const String.fromEnvironment(
+    'API_URL',
+    defaultValue:
+        'http://10.0.2.2:8080/inteaccERP/rest/v2/', //'http://hris.bengalgroup.com:8080/inteaccERP/rest/v2/',
+  );
+
   static String access_token = "";
   static Map<String, String> headers(bool useToken, bool useLogin) {
     if (useLogin) {
