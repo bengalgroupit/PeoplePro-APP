@@ -10,19 +10,19 @@ class EmployeeDirectoryModel {
   String? mobileNo;
   String? email;
   String? ipx;
-  String? motherName;
-  String? fatherName;
-  String? presentAddress;
-  String? permanentAddress;
+  //String? motherName;
+  //String? fatherName;
+  //String? presentAddress;
+  //String? permanentAddress;
   String? photo;
   String? emergencyContact;
   String? maritalStatus;
-  bool? isBloodDonor;
-  bool? isActive;
-  int? expLevel;
-  DateTime? joiningDate;
+  //bool? isBloodDonor;
+  //bool? isActive;
+  //int? expLevel;
+  //DateTime? joiningDate;
   String? gender;
-  DateTime? inActiveFrom;
+  //DateTime? inActiveFrom;
   String? religion;
 
   EmployeeDirectoryModel({
@@ -37,19 +37,19 @@ class EmployeeDirectoryModel {
     this.mobileNo,
     this.email,
     this.ipx,
-    this.motherName,
-    this.fatherName,
-    this.presentAddress,
-    this.permanentAddress,
+    //this.motherName,
+    ////this.fatherName,
+    //this.presentAddress,
+    //this.permanentAddress,
     this.photo,
     this.emergencyContact,
     this.maritalStatus,
-    this.isBloodDonor,
-    this.isActive,
-    this.expLevel,
-    this.joiningDate,
+    //this.isBloodDonor,
+    //this.isActive,
+    //this.expLevel,
+    //this.joiningDate,
     this.gender,
-    this.inActiveFrom,
+    //this.inActiveFrom,
     this.religion,
   });
 
@@ -65,19 +65,19 @@ class EmployeeDirectoryModel {
     mobileNo = json['mobileNo'];
     email = json['email'];
     ipx = json['ipx'];
-    motherName = json['motherName'];
-    fatherName = json['fatherName'];
-    presentAddress = json['presentAddress'];
-    permanentAddress = json['permanentAddress'];
+    //motherName = json['motherName'];
+    //fatherName = json['fatherName'];
+    //presentAddress = json['presentAddress'];
+    // permanentAddress = json['permanentAddress'];
     photo = json['photo'];
     emergencyContact = json['emergencyContact'];
     maritalStatus = json['maritalStatus'];
-    isBloodDonor = json['isBloodDonor'];
-    isActive = json['isActive'];
-    expLevel = json['expLevel'];
-    joiningDate = DateTime.parse(json['joiningDate'].toString());
+    //isBloodDonor = json['isBloodDonor'];
+    //isActive = json['isActive'];
+    //expLevel = json['expLevel'];
+    //joiningDate = DateTime.parse(json['joiningDate'].toString());
     gender = json['gender'];
-    inActiveFrom = DateTime.parse(json['inActiveFrom'].toString());
+    //inActiveFrom = DateTime.parse(json['inActiveFrom'].toString());
     religion = json['religion'];
   }
 
@@ -94,19 +94,19 @@ class EmployeeDirectoryModel {
     data['mobileNo'] = mobileNo;
     data['email'] = email;
     data['ipx'] = ipx;
-    data['motherName'] = motherName;
-    data['fatherName'] = fatherName;
-    data['presentAddress'] = presentAddress;
-    data['permanentAddress'] = permanentAddress;
+    //data['motherName'] = motherName;
+    //data['fatherName'] = fatherName;
+    //data['presentAddress'] = presentAddress;
+    //data['permanentAddress'] = permanentAddress;
     data['photo'] = photo;
     data['emergencyContact'] = emergencyContact;
-    data['isBloodDonor'] = isBloodDonor;
+    //data['isBloodDonor'] = isBloodDonor;
     data['maritalStatus'] = maritalStatus;
-    data['isActive'] = isActive;
-    data['expLevel'] = expLevel;
-    data['joiningDate'] = joiningDate;
+    //data['isActive'] = isActive;
+    //data['expLevel'] = expLevel;
+    //data['joiningDate'] = joiningDate;
     data['gender'] = gender;
-    data['inActiveFrom'] = inActiveFrom;
+    //data['inActiveFrom'] = inActiveFrom;
     data['religion'] = religion;
     return data;
   }

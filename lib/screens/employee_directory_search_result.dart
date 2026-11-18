@@ -127,21 +127,24 @@ class _EmployeeDirectorySearchResultScreenState
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Row(
-          children: [
-            Stack(
-              alignment: Alignment.center,
-              clipBehavior: Clip.none,
-              children: [
-                SizedBox(
-                  width: 72.0,
-                  height: 72.0,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(6.0),
-                    child: image,
+        Expanded(
+          child: Row(
+            children: [
+              Stack(
+                alignment: Alignment.center,
+                clipBehavior: Clip.none,
+                children: [
+                  SizedBox(
+                    width: 72.0,
+                    height: 72.0,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(6.0),
+                      child: image,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 2.0),
+                  const SizedBox(height: 2.0),
+
+/*
                 Positioned(
                   right: -5,
                   top: -5,
@@ -166,59 +169,64 @@ class _EmployeeDirectorySearchResultScreenState
                   bottom: -14,
                   child: getExpLevel(employee.expLevel!),
                 ),
-              ],
-            ),
-            const SizedBox(width: 16.0),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  employee.name!,
-                  overflow: TextOverflow.fade,
-                  style: const TextStyle(fontSize: 16),
-                ),
-                const SizedBox(height: 2.0),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 6.0, vertical: 2.0),
-                  decoration: BoxDecoration(
-                      color: UserColors.primaryColor,
-                      borderRadius: BorderRadius.circular(4.0)),
-                  child: Text(
-                    employee.designation!,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 14.0,
+
+*/
+                ],
+              ),
+              const SizedBox(width: 16.0),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      employee.name!,
+                      overflow: TextOverflow.fade,
+                      style: const TextStyle(fontSize: 16),
                     ),
-                  ),
+                    const SizedBox(height: 2.0),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 6.0, vertical: 2.0),
+                      decoration: BoxDecoration(
+                          color: UserColors.primaryColor,
+                          borderRadius: BorderRadius.circular(4.0)),
+                      child: Text(
+                        employee.designation!,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 14.0,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 3),
+                    Text(
+                      employee.section!,
+                      overflow: TextOverflow.fade,
+                      style: TextStyle(
+                        color: UserColors.primaryColor,
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Text(
+                      employee.department!,
+                      style: TextStyle(
+                        color: Colors.grey[800],
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Text(
+                      employee.location!,
+                      style: TextStyle(
+                        color: Colors.grey[800],
+                        fontSize: 14.0,
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 3),
-                Text(
-                  employee.section!,
-                  overflow: TextOverflow.fade,
-                  style: TextStyle(
-                    color: UserColors.primaryColor,
-                    fontSize: 14.0,
-                  ),
-                ),
-                Text(
-                  employee.department!,
-                  style: TextStyle(
-                    color: Colors.grey[800],
-                    fontSize: 14.0,
-                  ),
-                ),
-                Text(
-                  employee.location!,
-                  style: TextStyle(
-                    color: Colors.grey[800],
-                    fontSize: 14.0,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
+              )
+            ],
+          ),
+        )
       ],
     );
   }
@@ -279,25 +287,25 @@ class _EmployeeDirectorySearchResultScreenState
   }
 
   void showOtherInfo(EmployeeDirectoryModel employee) {
-    var lastDate =
-        employee.isActive! ? Settings.serverToday : employee.inActiveFrom!;
+    // var lastDate =
+    //     employee.isActive! ? Settings.serverToday : employee.inActiveFrom!;
 
-    var duration = Utils.calculateDuration(employee.joiningDate!, lastDate);
-    var durationText = "";
-    if (duration.year! > 0) {
-      durationText +=
-          ("${duration.year}${duration.year! == 1 ? " year" : " years"}");
-    }
-    if (duration.month! > 0) {
-      durationText += durationText.isNotEmpty ? ", " : "";
-      durationText +=
-          ("${duration.month}${duration.month! == 1 ? " month" : " months"}");
-    }
-    if (duration.day! > 0) {
-      durationText += durationText.isNotEmpty ? ", " : "";
-      durationText +=
-          ("${duration.day}${duration.day! == 1 ? " day" : " days"}");
-    }
+    // var duration = Utils.calculateDuration(employee.joiningDate!, lastDate);
+    // var durationText = "";
+    // if (duration.year! > 0) {
+    //   durationText +=
+    //       ("${duration.year}${duration.year! == 1 ? " year" : " years"}");
+    // }
+    // if (duration.month! > 0) {
+    //   durationText += durationText.isNotEmpty ? ", " : "";
+    //   durationText +=
+    //       ("${duration.month}${duration.month! == 1 ? " month" : " months"}");
+    // }
+    // if (duration.day! > 0) {
+    //   durationText += durationText.isNotEmpty ? ", " : "";
+    //   durationText +=
+    //       ("${duration.day}${duration.day! == 1 ? " day" : " days"}");
+    // }
 
     showModal(
         configuration: const FadeScaleTransitionConfiguration(
@@ -344,11 +352,11 @@ class _EmployeeDirectorySearchResultScreenState
                         children: [
                           if (Settings.editionId == 1)
                             const SizedBox(height: 8.0),
-                          if (Settings.editionId == 1)
-                            dataLineWidget(
-                              employee.isActive! ? "Serving" : "Served",
-                              durationText,
-                            ),
+                          // if (Settings.editionId == 1)
+                          //   dataLineWidget(
+                          //     employee.isActive! ? "Serving" : "Served",
+                          //     durationText,
+                          //   ),
                           const SizedBox(height: 4.0),
                           dataLineWidget(
                             "ID",
@@ -396,11 +404,11 @@ class _EmployeeDirectorySearchResultScreenState
                                   employee.bloodGroup!,
                                 ),
                               ),
-                              SizedBox(
-                                width: 150,
-                                child: dataLineWidget("Donate Blood?",
-                                    employee.isBloodDonor! ? "Yes" : "No"),
-                              ),
+                              // SizedBox(
+                              //   width: 150,
+                              //   child: dataLineWidget("Donate Blood?",
+                              //       employee.isBloodDonor! ? "Yes" : "No"),
+                              // ),
                             ],
                           ),
                           const SizedBox(height: 4.0),
@@ -418,90 +426,90 @@ class _EmployeeDirectorySearchResultScreenState
                             "Marital Status",
                             employee.maritalStatus!,
                           ),
-                          if (Settings.editionId == 1)
-                            const SizedBox(height: 4.0),
-                          if (Settings.editionId == 1)
-                            dataLineWidget(
-                              "Father's Name",
-                              employee.fatherName!,
-                            ),
-                          if (Settings.editionId == 1)
-                            const SizedBox(height: 4.0),
-                          if (Settings.editionId == 1)
-                            dataLineWidget(
-                              "Mother's Name",
-                              employee.motherName!,
-                            ),
-                          if (Settings.editionId == 1)
-                            const SizedBox(height: 4.0),
-                          if (Settings.editionId == 1)
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0, vertical: 4.0),
-                              decoration: BoxDecoration(
-                                  color: Colors.white.withOpacity(0.4),
-                                  borderRadius: BorderRadius.circular(8.0)),
-                              child: RichText(
-                                textAlign: TextAlign.left,
-                                text: TextSpan(
-                                  children: [
-                                    WidgetSpan(
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 6.0),
-                                        child: Text(
-                                          "Present Address",
-                                          style: TextStyle(
-                                              color: UserColors.primaryColor,
-                                              fontSize: 14.0),
-                                        ),
-                                      ),
-                                    ),
-                                    TextSpan(
-                                        text: employee.presentAddress!,
-                                        style: const TextStyle(
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.normal,
-                                            color: Colors.black87)),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          if (Settings.editionId == 1)
-                            const SizedBox(height: 4.0),
-                          if (Settings.editionId == 1)
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0, vertical: 4.0),
-                              decoration: BoxDecoration(
-                                  color: Colors.white.withOpacity(0.4),
-                                  borderRadius: BorderRadius.circular(8.0)),
-                              child: RichText(
-                                textAlign: TextAlign.left,
-                                text: TextSpan(
-                                  children: [
-                                    WidgetSpan(
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 6.0),
-                                        child: Text(
-                                          "Permanent Address",
-                                          style: TextStyle(
-                                              color: UserColors.primaryColor,
-                                              fontSize: 14.0),
-                                        ),
-                                      ),
-                                    ),
-                                    TextSpan(
-                                        text: employee.permanentAddress!,
-                                        style: const TextStyle(
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.normal,
-                                            color: Colors.black87)),
-                                  ],
-                                ),
-                              ),
-                            ),
+                          // if (Settings.editionId == 1)
+                          //   const SizedBox(height: 4.0),
+                          // if (Settings.editionId == 1)
+                          //   dataLineWidget(
+                          //     "Father's Name",
+                          //     employee.fatherName!,
+                          //   ),
+                          // if (Settings.editionId == 1)
+                          //   const SizedBox(height: 4.0),
+                          // if (Settings.editionId == 1)
+                          //   dataLineWidget(
+                          //     "Mother's Name",
+                          //     employee.motherName!,
+                          //   ),
+                          //if (Settings.editionId == 1)
+                          //   const SizedBox(height: 4.0),
+                          // if (Settings.editionId == 1)
+                          //   Container(
+                          //     padding: const EdgeInsets.symmetric(
+                          //         horizontal: 8.0, vertical: 4.0),
+                          //     decoration: BoxDecoration(
+                          //         color: Colors.white.withOpacity(0.4),
+                          //         borderRadius: BorderRadius.circular(8.0)),
+                          //     child: RichText(
+                          //       textAlign: TextAlign.left,
+                          //       text: TextSpan(
+                          //         children: [
+                          //           WidgetSpan(
+                          //             child: Padding(
+                          //               padding:
+                          //                   const EdgeInsets.only(right: 6.0),
+                          //               child: Text(
+                          //                 "Present Address",
+                          //                 style: TextStyle(
+                          //                     color: UserColors.primaryColor,
+                          //                     fontSize: 14.0),
+                          //               ),
+                          //             ),
+                          //           ),
+                          //           // TextSpan(
+                          //           //     text: employee.presentAddress!,
+                          //           //     style: const TextStyle(
+                          //           //         fontSize: 14.0,
+                          //           //         fontWeight: FontWeight.normal,
+                          //           //         color: Colors.black87)),
+                          //         ],
+                          //       ),
+                          //     ),
+                          //   ),
+                          // if (Settings.editionId == 1)
+                          //   const SizedBox(height: 4.0),
+                          // if (Settings.editionId == 1)
+                          //   Container(
+                          //     padding: const EdgeInsets.symmetric(
+                          //         horizontal: 8.0, vertical: 4.0),
+                          //     decoration: BoxDecoration(
+                          //         color: Colors.white.withOpacity(0.4),
+                          //         borderRadius: BorderRadius.circular(8.0)),
+                          //     child: RichText(
+                          //       textAlign: TextAlign.left,
+                          //       text: TextSpan(
+                          //         children: [
+                          //           WidgetSpan(
+                          //             child: Padding(
+                          //               padding:
+                          //                   const EdgeInsets.only(right: 6.0),
+                          //               child: Text(
+                          //                 "Permanent Address",
+                          //                 style: TextStyle(
+                          //                     color: UserColors.primaryColor,
+                          //                     fontSize: 14.0),
+                          //               ),
+                          //             ),
+                          //           ),
+                          //           TextSpan(
+                          //               text: employee.permanentAddress!,
+                          //               style: const TextStyle(
+                          //                   fontSize: 14.0,
+                          //                   fontWeight: FontWeight.normal,
+                          //                   color: Colors.black87)),
+                          //         ],
+                          //       ),
+                          //     ),
+                          //   ),
                         ],
                       ),
                     ),

@@ -20,7 +20,7 @@ class EmployeeProfileModel {
     mobileNo = json['mobileNo'];
     emergencyContact = json['emergencyContact'];
     email = json['email'];
-    isBloodDonor = json['isBloodDonor'];
+    //isBloodDonor = json['isBloodDonor'];
   }
 
   Map<String, dynamic> toJson() {
@@ -30,7 +30,7 @@ class EmployeeProfileModel {
     data['mobileNo'] = mobileNo;
     data['emergencyContact'] = emergencyContact;
     data['email'] = email;
-    data['isBloodDonor'] = isBloodDonor;
+    //data['isBloodDonor'] = isBloodDonor;
     return data;
   }
 }
